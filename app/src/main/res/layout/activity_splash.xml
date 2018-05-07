@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context="ghistayumna.com.myapplication.SplashActivity"
     android:id="@+id/splash">
-    <!--<ImageView-->
-        <!--android:id="@+id/image"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:src="@drawable/depan"-->
-        <!--android:scaleType="centerInside"-->
-        <!--android:visibility="gone"/>-->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/depan"
+        android:scaleType="centerInside"
+        android:visibility="visible"/>
 
     <TextView
         android:text="GhistaShop"
