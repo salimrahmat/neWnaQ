@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ghistayumna.com.myapplication.Model.User.ModelUser;
-import ghistayumna.com.myapplication.R;
 
 /**
  * Created by 0414831216 on 4/7/2018.

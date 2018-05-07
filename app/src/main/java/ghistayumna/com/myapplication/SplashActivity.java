@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ghistayumna.com.myapplication.Function.DatabaseHelper;
 import ghistayumna.com.myapplication.Function.InternetConnection;
 
 public class SplashActivity extends AppCompatActivity {
@@ -23,11 +24,14 @@ public class SplashActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private Context context;
     private String checked;
+    private DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        databaseHelper.getReadableDatabase();
         progressBar = (ProgressBar)findViewById(R.id.progresBar1);
         imageView = (ImageView)findViewById(R.id.image);
         context = getApplicationContext();

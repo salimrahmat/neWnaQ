@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ghistayumna.com.myapplication.Dao.UserDao;
 import ghistayumna.com.myapplication.Function.ConnectivityReceiver;
+import ghistayumna.com.myapplication.Function.DatabaseHelper;
 import ghistayumna.com.myapplication.Function.InternetConnection;
 import ghistayumna.com.myapplication.Function.MyApplication;
 import ghistayumna.com.myapplication.Model.User.ModelUser;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Context context;
     private ProgressDialog progressDialog;
+//    private DatabaseHelper databaseHelper;
     SharedPreferences preferences;
     public static final String Email = "Key Email";
     @BindView(R.id.link_signup) TextView signup;
@@ -48,13 +50,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        context = getApplicationContext();
+//        databaseHelper = new DatabaseHelper(context);
         final View currentiew  = this.findViewById(R.id.loginactivity);
         ButterKnife.bind(this);
-        context = getApplicationContext();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("loading");
         progressDialog.setCancelable(false);
         preferences = getSharedPreferences(Email,Context.MODE_PRIVATE);
+
 
        // userDao = new UserDao(currentiew,context,progressDialog);
         userLoginSetGet = new UserLoginSetGet(currentiew,context,progressDialog);
