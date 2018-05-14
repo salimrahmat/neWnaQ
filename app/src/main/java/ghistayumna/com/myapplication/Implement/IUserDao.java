@@ -42,9 +42,10 @@ public class IUserDao implements UserDao {
     @Override
     public String getIdUser() {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT count(userid) from user",null);
+        Cursor cursor=db.rawQuery("SELECT count(*) from user",null);
         try{
-            numBer = cursor.getCount();
+            cursor.moveToFirst();
+            numBer = cursor.getInt(0);
 //           if(cursor.moveToFirst()){
 //              do{
 //                  numBer = cursor.getCount();
@@ -60,8 +61,8 @@ public class IUserDao implements UserDao {
             }
         }
 
-        if(numBer > 0 ){
-            SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyy");
+        if(numBer >= 0 ){
+            SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyy");
             Date date = new Date();
             dateFormat.format(date);
             userId=dateFormat.format(date)+Integer.toString(numBer);

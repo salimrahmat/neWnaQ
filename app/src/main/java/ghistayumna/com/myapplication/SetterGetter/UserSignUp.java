@@ -65,12 +65,18 @@ public class UserSignUp {
         if(password.getText().length()==0){
             password.setError("password is required");
             modelUser.setCompleted(false);
+        }else if(password.getText().length() < 10){
+            password.setError("password minimal 10 character");
+            modelUser.setCompleted(false);
         }else{
             password.setError(null);
         }
 
         if(repassword.getText().length()==0){
             repassword.setError("re password is riquired");
+        }else if(repassword.getText().length() > 10){
+            repassword.setError("repassword minimal 10 character");
+            modelUser.setCompleted(false);
         }
 
         if(password.getText().toString().equals(repassword.getText().toString())){

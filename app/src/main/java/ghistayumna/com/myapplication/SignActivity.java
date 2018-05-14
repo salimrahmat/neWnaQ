@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ghistayumna.com.myapplication.Implement.IUserDao;
 import ghistayumna.com.myapplication.Model.User.ModelUser;
 import ghistayumna.com.myapplication.SetterGetter.UserSignUp;
 
@@ -24,6 +25,7 @@ public class SignActivity extends AppCompatActivity {
     private Context context;
     private ProgressDialog progressDialog;
     private UserSignUp userSignUp;
+    private IUserDao iUserDao;
 
 
     @Override
@@ -36,6 +38,7 @@ public class SignActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context = getApplicationContext();
         final View currentiew  = this.findViewById(R.id.signupUser);
+        iUserDao = new IUserDao(context);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("loading");
         progressDialog.setCancelable(false);
@@ -53,9 +56,9 @@ public class SignActivity extends AppCompatActivity {
     private void createuser() {
         ModelUser modelUser = new ModelUser();
         modelUser = userSignUp.signUp();
-//        if(!modelUser.getCompleted()){
-//            Snackbar.make(findViewById(R.id.signupUser),"Kemungkinan ada kesalahan  " ,Snackbar.LENGTH_LONG).show();
-//        }
+        if(modelUser.getCompleted()){
+            Snackbar.make(findViewById(R.id.signupUser),"Kemu "+iUserDao.getIdUser() ,Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
