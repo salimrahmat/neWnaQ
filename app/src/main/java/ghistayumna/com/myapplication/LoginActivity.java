@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Context context;
     private ProgressDialog progressDialog;
-//    private DatabaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
     SharedPreferences preferences;
     public static final String Email = "Key Email";
     @BindView(R.id.link_signup) TextView signup;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         context = getApplicationContext();
-//        databaseHelper = new DatabaseHelper(context);
+        databaseHelper = new DatabaseHelper(context);
         final View currentiew  = this.findViewById(R.id.loginactivity);
         ButterKnife.bind(this);
         progressDialog = new ProgressDialog(this);

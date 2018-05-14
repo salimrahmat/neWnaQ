@@ -5,12 +5,21 @@ package ghistayumna.com.myapplication.Model.User;
  */
 
 public class ModelUser {
+    private String userId;
     private String email;
     private String passWord;
     private String name;
     private String repassword;
     private String mobilePhone;
     private Boolean isCompleted=false;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;

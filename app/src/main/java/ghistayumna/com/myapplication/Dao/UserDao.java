@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.List;
+
 import ghistayumna.com.myapplication.Model.User.ModelUser;
 
 /**
@@ -20,6 +22,7 @@ public interface UserDao {
    public int login(ModelUser modelUser);
    public String getUserEmail(String email);
    public String insertUser(ModelUser modelUser);
+   public String getIdUser();
 
 //    public UserDao(View view, Context context, ProgressDialog progressDialog){
 //        this.view = view;
