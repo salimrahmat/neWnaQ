@@ -20,8 +20,10 @@ import butterknife.ButterKnife;
 import ghistayumna.com.myapplication.Dao.UserDao;
 import ghistayumna.com.myapplication.Function.ConnectivityReceiver;
 import ghistayumna.com.myapplication.Function.DatabaseHelper;
+import ghistayumna.com.myapplication.Function.FinalConstant;
 import ghistayumna.com.myapplication.Function.InternetConnection;
 import ghistayumna.com.myapplication.Function.MyApplication;
+import ghistayumna.com.myapplication.Implement.IUserDao;
 import ghistayumna.com.myapplication.Model.User.ModelUser;
 import ghistayumna.com.myapplication.SetterGetter.UserLoginSetGet;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private Context context;
     private ProgressDialog progressDialog;
     private DatabaseHelper databaseHelper;
+    private IUserDao iUserDao;
     SharedPreferences preferences;
     public static final String Email = "Key Email";
     @BindView(R.id.link_signup) TextView signup;
@@ -54,25 +57,23 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(context);
         final View currentiew  = this.findViewById(R.id.loginactivity);
         ButterKnife.bind(this);
+        iUserDao = new IUserDao(context);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("loading");
         progressDialog.setCancelable(false);
         preferences = getSharedPreferences(Email,Context.MODE_PRIVATE);
 
-
-       // userDao = new UserDao(currentiew,context,progressDialog);
         userLoginSetGet = new UserLoginSetGet(currentiew,context,progressDialog);
         buttonLogin = (Button)findViewById(R.id.btn_login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(InternetConnection.getInstance(context).isOnline()){
-                    Toast.makeText(context,"WiFi/Mobile Networks Connected!",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context,"Ooops! No WiFi/Mobile Networks Connected!",Toast.LENGTH_SHORT).show();
-                }
-                //checkConnection();
-                //doLogin();
+//                if(InternetConnection.getInstance(context).isOnline()){
+//                    Toast.makeText(context,"WiFi/Mobile Networks Connected!",Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(context,"Ooops! No WiFi/Mobile Networks Connected!",Toast.LENGTH_SHORT).show();
+//                }
+                doLogin();
             }
         });
 
@@ -118,25 +119,24 @@ public class LoginActivity extends AppCompatActivity {
         modelUser = userLoginSetGet.getDataLogin();
         Log.d("etamah","kumaha  "+modelUser.getCompleted());
 
-        if(!modelUser.getCompleted()){
-            Log.d("return","method login");
-            SharedPreferences.Editor edit = preferences.edit();
-            edit.putString("key",modelUser.getEmail());
-            edit.commit();
+        if(modelUser.getCompleted()){
+            if(iUserDao.login(modelUser)== FinalConstant.login_succes){
+                iUserDao.getUserEmail(modelUser.getEmail());
 
-            Snackbar.make(findViewById(R.id.loginactivity),"Kemungkinan ada kesalahan  "+preferences.getString("key","") ,Snackbar.LENGTH_LONG).show();
-            //progressDialog.dismiss();
-            return;
+                //Snackbar.make(findViewById(R.id.loginactivity),"Login Succes  ",Snackbar.LENGTH_LONG).show();
+            }else{
+                Snackbar.make(findViewById(R.id.loginactivity),"Login failed  ",Snackbar.LENGTH_LONG).show();
+            }
         }
-//        else{
-//            if(userDao.validate(modelUser)){
-//                Snackbar.make(findViewById(R.id.loginactivity),"Login succes",Snackbar.LENGTH_LONG).show();
-//            }
+//        if(!modelUser.getCompleted()){
+//            Log.d("return","method login");
+//            SharedPreferences.Editor edit = preferences.edit();
+//            edit.putString("key",modelUser.getEmail());
+//            edit.commit();
+//
+//            Snackbar.make(findViewById(R.id.loginactivity),"Kemungkinan ada kesalahan  "+preferences.getString("key","") ,Snackbar.LENGTH_LONG).show();
+//            //progressDialog.dismiss();
+//            return;
 //        }
     }
-
-//    @Override
-//    public void onNetworkConnectionChanged(boolean isConnected) {
-//
-//    }
 }

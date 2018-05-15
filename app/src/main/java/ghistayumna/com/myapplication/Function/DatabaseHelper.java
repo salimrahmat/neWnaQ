@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
-    private static final String DATABASE_NAME = "newnaq.db";
+    private static final String DATABASE_NAME = "ligis.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String USER = "user";
@@ -28,9 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_USER = "CREATE TABLE "+USER+"("+
-                KEY_USER_ID+"STRING PRIMARY KEY," +
+                KEY_USER_ID+" TEXT PRIMARY KEY," +
                 KEY_NAME+" TEXT," +
-                KEY_EMAIL+" TEXT," +
+                KEY_EMAIL+" TEXT UNIQUE," +
                 KEY_MOBILE_PHONE+" TEXT," +
                 KEY_PASSWORD+" TEXT" +
         ")";

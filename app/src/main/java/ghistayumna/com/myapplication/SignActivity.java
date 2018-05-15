@@ -3,6 +3,7 @@ package ghistayumna.com.myapplication;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class SignActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private UserSignUp userSignUp;
     private IUserDao iUserDao;
-
+    private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class SignActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               progressDialog.show();
                createuser();
             }
         });
@@ -56,8 +58,14 @@ public class SignActivity extends AppCompatActivity {
     private void createuser() {
         ModelUser modelUser = new ModelUser();
         modelUser = userSignUp.signUp();
+        modelUser.setUserId(iUserDao.getIdUser());
         if(modelUser.getCompleted()){
-            Snackbar.make(findViewById(R.id.signupUser),"Kemu "+iUserDao.getIdUser() ,Snackbar.LENGTH_LONG).show();
+            result=iUserDao.insertUser(modelUser);
+            Snackbar.make(findViewById(R.id.signupUser),"Success "+result ,Snackbar.LENGTH_LONG).show();
+            Intent intent = new Intent(context,LoginActivity.class);
+            startActivity(intent);
+        }else{
+            Snackbar.make(findViewById(R.id.signupUser),"Error silahkan hub It" ,Snackbar.LENGTH_LONG).show();
         }
     }
 
