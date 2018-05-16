@@ -21,6 +21,7 @@ public class IUserDao implements UserDao {
     private Integer userLogin;
     private String userId;
     private String result;
+    private String userMail;
     public IUserDao(Context context){
         databaseHelper = new DatabaseHelper(context);
     }
@@ -53,11 +54,11 @@ public class IUserDao implements UserDao {
     @Override
     public String getUserEmail(String email) {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor=db.rawQuery("select email from user" +
+        Cursor cursor=db.rawQuery("select email from user " +
                 "where email="+"'"+email+"'",null);
         try{
             if(cursor.moveToFirst()){
-               cursor.getString(cursor.getColumnIndex("email"));
+                userMail=cursor.getString(cursor.getColumnIndex("email"));
             }
         }catch (Exception e){
             e.getMessage();
@@ -67,7 +68,7 @@ public class IUserDao implements UserDao {
                 db.close();
             }
         }
-        return null;
+        return userMail;
     }
 
     @Override

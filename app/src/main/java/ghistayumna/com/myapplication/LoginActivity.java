@@ -121,9 +121,10 @@ public class LoginActivity extends AppCompatActivity {
 
         if(modelUser.getCompleted()){
             if(iUserDao.login(modelUser)== FinalConstant.login_succes){
-                iUserDao.getUserEmail(modelUser.getEmail());
-
-                //Snackbar.make(findViewById(R.id.loginactivity),"Login Succes  ",Snackbar.LENGTH_LONG).show();
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putString("key",iUserDao.getUserEmail(modelUser.getEmail()));
+                edit.commit();
+                Snackbar.make(findViewById(R.id.loginactivity),"Login Succes  "+preferences.getString("key",""),Snackbar.LENGTH_LONG).show();
             }else{
                 Snackbar.make(findViewById(R.id.loginactivity),"Login failed  ",Snackbar.LENGTH_LONG).show();
             }
