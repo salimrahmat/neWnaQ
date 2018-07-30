@@ -58,9 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         final View currentiew  = this.findViewById(R.id.loginactivity);
         ButterKnife.bind(this);
         iUserDao = new IUserDao(context);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("loading");
-        progressDialog.setCancelable(false);
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("loading");
+//        progressDialog.setCancelable(false);
         preferences = getSharedPreferences(Email,Context.MODE_PRIVATE);
 
         userLoginSetGet = new UserLoginSetGet(currentiew,context,progressDialog);
@@ -80,7 +80,9 @@ public class LoginActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SignActivity.class);
+ //               Intent intent = new Intent(getApplicationContext(),SignActivity.class);
+               Intent intent = new Intent(getApplicationContext(),AdminUserActivity.class);
+
                 startActivity(intent);
             }
         });

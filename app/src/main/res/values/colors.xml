@@ -14,4 +14,11 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="colorPrimary">#1B5E20</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
+    <color name="colorAccent">#00C853</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
 </resources>

@@ -2,6 +2,7 @@ package ghistayumna.com.myapplication.SetterGetter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.design.widget.TextInputLayout;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class UserLoginSetGet {
     private Context context;
     private ModelUser modelUser;
     private boolean valid=true;
+    private TextInputLayout textInputLayout;
 
     private EditText userEmail,userPassword;
 
@@ -38,10 +40,14 @@ public class UserLoginSetGet {
         modelUser = new ModelUser();
         userEmail = (EditText)view.findViewById(R.id.input_email);
         userPassword = (EditText)view.findViewById(R.id.input_password);
+        textInputLayout = (TextInputLayout)view.findViewById(R.id.input_email_layout);
         modelUser.setCompleted(true);
         if(userEmail.getText().length()==0){
-            userEmail.setError("Email is required ");
-            modelUser.setCompleted(false);
+            textInputLayout.setError("akulah begini");
+            //TextInputLayout til = (TextInputLayout) findViewById(R.id.text_input_layout);
+            //til.setError("You need to enter a name");
+            //userEmail.setError("Email is required ");
+            //modelUser.setCompleted(false);
         }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail.getText().toString()).matches()){
             userEmail.setError("enter a valid email address ");
             modelUser.setCompleted(false);
