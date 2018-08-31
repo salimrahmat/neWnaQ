@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import bacis.ghistayumna.com.mylibrary.mapsGoogle.MapsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ghistayumna.com.myapplication.Dao.UserDao;
@@ -90,8 +91,9 @@ public class LoginActivity extends AppCompatActivity {
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                startActivity(intent);
+//                startActivityvity(intent);
             }
         });
     }
