@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginSetGet userLoginSetGet;
     private ModelUser modelUser = new ModelUser();
     private View view;
-    private Button buttonLogin;
+    private Button buttonLogin,fotoTake;
     private Context context;
     private ProgressDialog progressDialog;
     private DatabaseHelper databaseHelper;
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;
     public static final String Email = "Key Email";
     @BindView(R.id.link_signup) TextView signup;
-
+    @BindView(R.id.takefoto) TextView foto;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         userLoginSetGet = new UserLoginSetGet(currentiew,context,progressDialog);
         buttonLogin = (Button)findViewById(R.id.btn_login);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +83,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
  //               Intent intent = new Intent(getApplicationContext(),SignActivity.class);
                Intent intent = new Intent(getApplicationContext(),AdminUserActivity.class);
+               startActivity(intent);
+            }
+        });
 
-                startActivity(intent);
+        foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+//                startActivity(intent);
             }
         });
     }

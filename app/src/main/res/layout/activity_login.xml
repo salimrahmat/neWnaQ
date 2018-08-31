@@ -76,5 +76,17 @@
             android:onClick="onClick"
             android:clickable="true"/>
 
+        <TextView android:id="@+id/takefoto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="fotoTake"
+            android:gravity="center"
+            android:textSize="16dip"
+            android:onClick="onClick"
+            android:clickable="true"/>
+
+
+
     </LinearLayout>
 </ScrollView>
